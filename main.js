@@ -216,10 +216,55 @@ function handleComplete_house(evt_house,comp_house) {
     AdobeAn_house.compositionLoaded(lib_house.properties.id);
 }
 
+var canvas_jobs, stage_jobs, exportRoot_jobs, anim_container_jobs, dom_overlay_container_jobs, fnStartAnimation_jobs;
+function init_jobs() {
+    canvas_jobs = document.getElementById("canvas_jobs");
+    anim_container_jobs = document.getElementById("animation_container_jobs");
+    dom_overlay_container_jobs = document.getElementById("dom_overlay_container_jobs");
+    var comp_jobs=AdobeAn_jobs.getComposition("9C467AB24BF8423195F44663826E4B49");
+    var lib_jobs=comp_jobs.getLibrary();
+    var loader = new createjs.LoadQueue(false);
+    loader.addEventListener("fileload", function(evt_jobs){handleFileLoad_jobs(evt_jobs,comp_jobs)});
+    loader.addEventListener("complete", function(evt_jobs){handleComplete_jobs(evt_jobs,comp_jobs)});
+    var lib_jobs=comp_jobs.getLibrary();
+    loader.loadManifest(lib_jobs.properties.manifest);
+    console.log('here')
+    console.log(lib_jobs);
+}
+function handleFileLoad_jobs(evt_jobs, comp_jobs) {
+    var images=comp_jobs.getImages();
+    if (evt_jobs && (evt_jobs.item.type == "image")) { images[evt_jobs.item.id] = evt_jobs.result; }
+}
+function handleComplete_jobs(evt_jobs,comp_jobs) {
+    //This function is always called, irrespective of the content. You can use the variable "stage_jobs" after it is created in token create_stage_jobs.
+    console.log('get comp_jobs library');
+    console.log(comp_jobs.getLibrary());
+    var lib_jobs=comp_jobs.getLibrary();
+    var ss=comp_jobs.getSpriteSheet();
+    var queue = evt_jobs.target;
+    var ssMetadata = lib_jobs.ssMetadata;
+    for(i=0; i<ssMetadata.length; i++) {
+        ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+    }
+    console.log(lib_jobs);
+    exportRoot_jobs = new lib_jobs.Jobs();
+    stage_jobs = new lib_jobs.Stage(canvas_jobs);
+    //Registers the "tick" event listener.
+    stage_jobs.addChild(exportRoot_jobs);
+    fnStartAnimation_jobs = function() {
+        createjs.Ticker.framerate = lib_jobs.properties.fps;
+        createjs.Ticker.addEventListener("tick", stage_jobs);
+    }
+    //Code to support hidpi screens and responsive scaling.
+    AdobeAn_jobs.makeResponsive(true,'both',true,1,[canvas_jobs,anim_container_jobs,dom_overlay_container_jobs]);
+    AdobeAn_jobs.compositionLoaded(lib_jobs.properties.id);
+}
+
 $(document).ready(function () {
     init_benefit();
     init_car();
     init_commercial();
     init_flood();
     init_house();
+    init_jobs();
 })
