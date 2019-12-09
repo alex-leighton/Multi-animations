@@ -10,8 +10,6 @@ function init_benefit() {
     loader.addEventListener("complete", function(evt_benefit){handleComplete_benefit(evt_benefit,comp_benefit)});
     var lib_benefit=comp_benefit.getLibrary();
     loader.loadManifest(lib_benefit.properties.manifest);
-    console.log('here')
-    console.log(lib_benefit);
 }
 function handleFileLoad_benefit(evt_benefit, comp_benefit) {
     var images=comp_benefit.getImages();
@@ -19,8 +17,6 @@ function handleFileLoad_benefit(evt_benefit, comp_benefit) {
 }
 function handleComplete_benefit(evt_benefit,comp_benefit) {
     //This function is always called, irrespective of the content. You can use the variable "stage_benefit" after it is created in token create_stage_benefit.
-    console.log('get comp_benefit library');
-    console.log(comp_benefit.getLibrary());
     var lib_benefit=comp_benefit.getLibrary();
     var ss=comp_benefit.getSpriteSheet();
     var queue = evt_benefit.target;
@@ -28,7 +24,6 @@ function handleComplete_benefit(evt_benefit,comp_benefit) {
     for(i=0; i<ssMetadata.length; i++) {
         ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
     }
-    console.log(lib_benefit);
     exportRoot_benefit = new lib_benefit.Benefit();
     stage_benefit = new lib_benefit.Stage(canvas_benefit);
     //Registers the "tick" event listener.
@@ -68,8 +63,6 @@ function handleComplete_car(evt_car,comp) {
     for(i=0; i<ssMetadata.length; i++) {
         ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
     }
-    console.log('libbe_car');
-    console.log(lib_car);
     exportRoot_car = new lib_car.Car();
     stage_car = new lib_car.Stage(canvas_car);
     //Registers the "tick" event listener.
@@ -95,8 +88,6 @@ function init_commercial() {
     loader.addEventListener("complete", function(evt_commercial){handleComplete_commercial(evt_commercial,comp_commercial)});
     var lib_commercial=comp_commercial.getLibrary();
     loader.loadManifest(lib_commercial.properties.manifest);
-    console.log('here')
-    console.log(lib_commercial);
 }
 function handleFileLoad_commercial(evt_commercial, comp_commercial) {
     var images=comp_commercial.getImages();
@@ -104,8 +95,6 @@ function handleFileLoad_commercial(evt_commercial, comp_commercial) {
 }
 function handleComplete_commercial(evt_commercial,comp_commercial) {
     //This function is always called, irrespective of the content. You can use the variable "stage_commercial" after it is created in token create_stage_commercial.
-    console.log('get comp_commercial library');
-    console.log(comp_commercial.getLibrary());
     var lib_commercial=comp_commercial.getLibrary();
     var ss=comp_commercial.getSpriteSheet();
     var queue = evt_commercial.target;
@@ -113,7 +102,6 @@ function handleComplete_commercial(evt_commercial,comp_commercial) {
     for(i=0; i<ssMetadata.length; i++) {
         ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
     }
-    console.log(lib_commercial);
     exportRoot_commercial = new lib_commercial.Commercial();
     stage_commercial = new lib_commercial.Stage(canvas_commercial);
     //Registers the "tick" event listener.
@@ -140,8 +128,6 @@ function init_flood() {
     loader.addEventListener("complete", function(evt_flood){handleComplete_flood(evt_flood,comp_flood)});
     var lib_flood=comp_flood.getLibrary();
     loader.loadManifest(lib_flood.properties.manifest);
-    console.log('here')
-    console.log(lib_flood);
 }
 function handleFileLoad_flood(evt_flood, comp_flood) {
     var images=comp_flood.getImages();
@@ -149,8 +135,6 @@ function handleFileLoad_flood(evt_flood, comp_flood) {
 }
 function handleComplete_flood(evt_flood,comp_flood) {
     //This function is always called, irrespective of the content. You can use the variable "stage_flood" after it is created in token create_stage_flood.
-    console.log('get comp_flood library');
-    console.log(comp_flood.getLibrary());
     var lib_flood=comp_flood.getLibrary();
     var ss=comp_flood.getSpriteSheet();
     var queue = evt_flood.target;
@@ -158,7 +142,6 @@ function handleComplete_flood(evt_flood,comp_flood) {
     for(i=0; i<ssMetadata.length; i++) {
         ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
     }
-    console.log(lib_flood);
     exportRoot_flood = new lib_flood.Flood();
     stage_flood = new lib_flood.Stage(canvas_flood);
     //Registers the "tick" event listener.
@@ -184,8 +167,6 @@ function init_house() {
     loader.addEventListener("complete", function(evt_house){handleComplete_house(evt_house,comp_house)});
     var lib_house=comp_house.getLibrary();
     loader.loadManifest(lib_house.properties.manifest);
-    console.log('here')
-    console.log(lib_house);
 }
 function handleFileLoad_house(evt_house, comp_house) {
     var images=comp_house.getImages();
@@ -193,8 +174,6 @@ function handleFileLoad_house(evt_house, comp_house) {
 }
 function handleComplete_house(evt_house,comp_house) {
     //This function is always called, irrespective of the content. You can use the variable "stage_house" after it is created in token create_stage_house.
-    console.log('get comp_house library');
-    console.log(comp_house.getLibrary());
     var lib_house=comp_house.getLibrary();
     var ss=comp_house.getSpriteSheet();
     var queue = evt_house.target;
@@ -202,7 +181,6 @@ function handleComplete_house(evt_house,comp_house) {
     for(i=0; i<ssMetadata.length; i++) {
         ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
     }
-    console.log(lib_house);
     exportRoot_house = new lib_house.House();
     stage_house = new lib_house.Stage(canvas_house);
     //Registers the "tick" event listener.
@@ -228,8 +206,6 @@ function init_jobs() {
     loader.addEventListener("complete", function(evt_jobs){handleComplete_jobs(evt_jobs,comp_jobs)});
     var lib_jobs=comp_jobs.getLibrary();
     loader.loadManifest(lib_jobs.properties.manifest);
-    console.log('here')
-    console.log(lib_jobs);
 }
 function handleFileLoad_jobs(evt_jobs, comp_jobs) {
     var images=comp_jobs.getImages();
@@ -237,8 +213,6 @@ function handleFileLoad_jobs(evt_jobs, comp_jobs) {
 }
 function handleComplete_jobs(evt_jobs,comp_jobs) {
     //This function is always called, irrespective of the content. You can use the variable "stage_jobs" after it is created in token create_stage_jobs.
-    console.log('get comp_jobs library');
-    console.log(comp_jobs.getLibrary());
     var lib_jobs=comp_jobs.getLibrary();
     var ss=comp_jobs.getSpriteSheet();
     var queue = evt_jobs.target;
@@ -246,7 +220,6 @@ function handleComplete_jobs(evt_jobs,comp_jobs) {
     for(i=0; i<ssMetadata.length; i++) {
         ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
     }
-    console.log(lib_jobs);
     exportRoot_jobs = new lib_jobs.Jobs();
     stage_jobs = new lib_jobs.Stage(canvas_jobs);
     //Registers the "tick" event listener.
@@ -272,8 +245,6 @@ function init_money() {
     loader.addEventListener("complete", function(evt_money){handleComplete_money(evt_money,comp_money)});
     var lib_money=comp_money.getLibrary();
     loader.loadManifest(lib_money.properties.manifest);
-    console.log('here')
-    console.log(lib_money);
 }
 function handleFileLoad_money(evt_money, comp_money) {
     var images=comp_money.getImages();
@@ -281,8 +252,6 @@ function handleFileLoad_money(evt_money, comp_money) {
 }
 function handleComplete_money(evt_money,comp_money) {
     //This function is always called, irrespective of the content. You can use the variable "stage_money" after it is created in token create_stage_money.
-    console.log('get comp_money library');
-    console.log(comp_money.getLibrary());
     var lib_money=comp_money.getLibrary();
     var ss=comp_money.getSpriteSheet();
     var queue = evt_money.target;
@@ -290,7 +259,6 @@ function handleComplete_money(evt_money,comp_money) {
     for(i=0; i<ssMetadata.length; i++) {
         ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
     }
-    console.log(lib_money);
     exportRoot_money = new lib_money.Money();
     stage_money = new lib_money.Stage(canvas_money);
     //Registers the "tick" event listener.
