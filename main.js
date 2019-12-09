@@ -172,9 +172,54 @@ function handleComplete_flood(evt_flood,comp_flood) {
     AdobeAn_flood.compositionLoaded(lib_flood.properties.id);
 }
 
+var canvas_house, stage_house, exportRoot_house, anim_container_house, dom_overlay_container_house, fnStartAnimation_house;
+function init_house() {
+    canvas_house = document.getElementById("canvas_house");
+    anim_container_house = document.getElementById("animation_container_house");
+    dom_overlay_container_house = document.getElementById("dom_overlay_container_house");
+    var comp_house=AdobeAn_house.getComposition("9C467AB24BF8423195F44663826E4B49");
+    var lib_house=comp_house.getLibrary();
+    var loader = new createjs.LoadQueue(false);
+    loader.addEventListener("fileload", function(evt_house){handleFileLoad_house(evt_house,comp_house)});
+    loader.addEventListener("complete", function(evt_house){handleComplete_house(evt_house,comp_house)});
+    var lib_house=comp_house.getLibrary();
+    loader.loadManifest(lib_house.properties.manifest);
+    console.log('here')
+    console.log(lib_house);
+}
+function handleFileLoad_house(evt_house, comp_house) {
+    var images=comp_house.getImages();
+    if (evt_house && (evt_house.item.type == "image")) { images[evt_house.item.id] = evt_house.result; }
+}
+function handleComplete_house(evt_house,comp_house) {
+    //This function is always called, irrespective of the content. You can use the variable "stage_house" after it is created in token create_stage_house.
+    console.log('get comp_house library');
+    console.log(comp_house.getLibrary());
+    var lib_house=comp_house.getLibrary();
+    var ss=comp_house.getSpriteSheet();
+    var queue = evt_house.target;
+    var ssMetadata = lib_house.ssMetadata;
+    for(i=0; i<ssMetadata.length; i++) {
+        ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+    }
+    console.log(lib_house);
+    exportRoot_house = new lib_house.House();
+    stage_house = new lib_house.Stage(canvas_house);
+    //Registers the "tick" event listener.
+    stage_house.addChild(exportRoot_house);
+    fnStartAnimation_house = function() {
+        createjs.Ticker.framerate = lib_house.properties.fps;
+        createjs.Ticker.addEventListener("tick", stage_house);
+    }
+    //Code to support hidpi screens and responsive scaling.
+    AdobeAn_house.makeResponsive(true,'both',true,1,[canvas_house,anim_container_house,dom_overlay_container_house]);
+    AdobeAn_house.compositionLoaded(lib_house.properties.id);
+}
+
 $(document).ready(function () {
     init_benefit();
     init_car();
     init_commercial();
     init_flood();
+    init_house();
 })
