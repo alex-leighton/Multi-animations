@@ -128,8 +128,53 @@ function handleComplete_commercial(evt_commercial,comp_commercial) {
 }
 
 
+var canvas_flood, stage_flood, exportRoot_flood, anim_container_flood, dom_overlay_container_flood, fnStartAnimation_flood;
+function init_flood() {
+    canvas_flood = document.getElementById("canvas_flood");
+    anim_container_flood = document.getElementById("animation_container_flood");
+    dom_overlay_container_flood = document.getElementById("dom_overlay_container_flood");
+    var comp_flood=AdobeAn_flood.getComposition("9C467AB24BF8423195F44663826E4B49");
+    var lib_flood=comp_flood.getLibrary();
+    var loader = new createjs.LoadQueue(false);
+    loader.addEventListener("fileload", function(evt_flood){handleFileLoad_flood(evt_flood,comp_flood)});
+    loader.addEventListener("complete", function(evt_flood){handleComplete_flood(evt_flood,comp_flood)});
+    var lib_flood=comp_flood.getLibrary();
+    loader.loadManifest(lib_flood.properties.manifest);
+    console.log('here')
+    console.log(lib_flood);
+}
+function handleFileLoad_flood(evt_flood, comp_flood) {
+    var images=comp_flood.getImages();
+    if (evt_flood && (evt_flood.item.type == "image")) { images[evt_flood.item.id] = evt_flood.result; }
+}
+function handleComplete_flood(evt_flood,comp_flood) {
+    //This function is always called, irrespective of the content. You can use the variable "stage_flood" after it is created in token create_stage_flood.
+    console.log('get comp_flood library');
+    console.log(comp_flood.getLibrary());
+    var lib_flood=comp_flood.getLibrary();
+    var ss=comp_flood.getSpriteSheet();
+    var queue = evt_flood.target;
+    var ssMetadata = lib_flood.ssMetadata;
+    for(i=0; i<ssMetadata.length; i++) {
+        ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+    }
+    console.log(lib_flood);
+    exportRoot_flood = new lib_flood.Flood();
+    stage_flood = new lib_flood.Stage(canvas_flood);
+    //Registers the "tick" event listener.
+    stage_flood.addChild(exportRoot_flood);
+    fnStartAnimation_flood = function() {
+        createjs.Ticker.framerate = lib_flood.properties.fps;
+        createjs.Ticker.addEventListener("tick", stage_flood);
+    }
+    //Code to support hidpi screens and responsive scaling.
+    AdobeAn_flood.makeResponsive(true,'both',true,1,[canvas_flood,anim_container_flood,dom_overlay_container_flood]);
+    AdobeAn_flood.compositionLoaded(lib_flood.properties.id);
+}
+
 $(document).ready(function () {
     init_benefit();
     init_car();
     init_commercial();
+    init_flood();
 })
