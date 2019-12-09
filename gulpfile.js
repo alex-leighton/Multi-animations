@@ -3,7 +3,10 @@ var gulp = require('gulp'),
     concat = require('gulp-concat');
 
 function js(cb) {
-    gulp.src('js/main.js')
+    gulp.src([
+        'node_modules/jquery/dist/jquery.min.js',
+        'js/main.js'
+        ])
         .pipe(uglify())
         .pipe(concat('main.min.js'))
         .pipe(gulp.dest('js'))
