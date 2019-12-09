@@ -83,8 +83,53 @@ function handleComplete_car(evt_car,comp) {
     AdobeAn.compositionLoaded(lib_car.properties.id);
 }
 
+var canvas_commercial, stage_commercial, exportRoot_commercial, anim_container_commercial, dom_overlay_container_commercial, fnStartAnimation_commercial;
+function init_commercial() {
+    canvas_commercial = document.getElementById("canvas_commercial");
+    anim_container_commercial = document.getElementById("animation_container_commercial");
+    dom_overlay_container_commercial = document.getElementById("dom_overlay_container_commercial");
+    var comp_commercial=AdobeAn_commercial.getComposition("9C467AB24BF8423195F44663826E4B49");
+    var lib_commercial=comp_commercial.getLibrary();
+    var loader = new createjs.LoadQueue(false);
+    loader.addEventListener("fileload", function(evt_commercial){handleFileLoad_commercial(evt_commercial,comp_commercial)});
+    loader.addEventListener("complete", function(evt_commercial){handleComplete_commercial(evt_commercial,comp_commercial)});
+    var lib_commercial=comp_commercial.getLibrary();
+    loader.loadManifest(lib_commercial.properties.manifest);
+    console.log('here')
+    console.log(lib_commercial);
+}
+function handleFileLoad_commercial(evt_commercial, comp_commercial) {
+    var images=comp_commercial.getImages();
+    if (evt_commercial && (evt_commercial.item.type == "image")) { images[evt_commercial.item.id] = evt_commercial.result; }
+}
+function handleComplete_commercial(evt_commercial,comp_commercial) {
+    //This function is always called, irrespective of the content. You can use the variable "stage_commercial" after it is created in token create_stage_commercial.
+    console.log('get comp_commercial library');
+    console.log(comp_commercial.getLibrary());
+    var lib_commercial=comp_commercial.getLibrary();
+    var ss=comp_commercial.getSpriteSheet();
+    var queue = evt_commercial.target;
+    var ssMetadata = lib_commercial.ssMetadata;
+    for(i=0; i<ssMetadata.length; i++) {
+        ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+    }
+    console.log(lib_commercial);
+    exportRoot_commercial = new lib_commercial.Commercial();
+    stage_commercial = new lib_commercial.Stage(canvas_commercial);
+    //Registers the "tick" event listener.
+    stage_commercial.addChild(exportRoot_commercial);
+    fnStartAnimation_commercial = function() {
+        createjs.Ticker.framerate = lib_commercial.properties.fps;
+        createjs.Ticker.addEventListener("tick", stage_commercial);
+    }
+    //Code to support hidpi screens and responsive scaling.
+    AdobeAn_commercial.makeResponsive(true,'both',true,1,[canvas_commercial,anim_container_commercial,dom_overlay_container_commercial]);
+    AdobeAn_commercial.compositionLoaded(lib_commercial.properties.id);
+}
+
 
 $(document).ready(function () {
     init_benefit();
     init_car();
+    init_commercial();
 })
