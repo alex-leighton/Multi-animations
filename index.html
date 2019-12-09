@@ -1,46 +1,45 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="authoring-tool" content="Adobe_Animate_CC">
 		<script src="js/createjs.min.js"></script>
-		<!-- Script for Benefit -->
 		<script src="js/animations.min.js"></script>
 		<script src="js/main.min.js"></script>
+		<link rel="stylesheet" href="css/style.css">
 	</head>
-	<body  style="margin:0px;">
-	<div onload="init_car();" id="animation_container_car" style="background-color:rgba(255,255,255,1.0); width:1920px; height:600px; margin: 0 auto;">
-		<canvas id="canvas_car" width="1920" height="600" style="position: absolute; display: block; background-color:rgba(255,255,255,1.0);"></canvas>
-		<div id="dom_overlay_container_car" style="pointer-events:none; overflow:hidden; width:1920px; height:600px; position: absolute; left: 0px; top: 0px; display: block;">
+	<body>
+	<div class="animation_container" id="animation_container_car">
+		<canvas id="canvas_car" width="1920" height="600"></canvas>
+		<div class="dom_overlay_container" id="dom_overlay_container_car">
 		</div>
 	</div>
-	<div id="animation_container_benefit" style="background-color:rgba(255,255,255,1.0); width:1920px; height:600px; margin: 0 auto;">
-		<canvas id="canvas_benefit" width="1920" height="600" style="position: absolute; display: block; background-color:rgba(255,255,255,1.0);"></canvas>
-		<div id="dom_overlay_container_benefit" style="pointer-events:none; overflow:hidden; width:1920px; height:600px; position: absolute; left: 0px; top: 0px; display: block;">
+	<div class="animation_container" id="animation_container_benefit">
+		<canvas id="canvas_benefit" width="1920" height="600"></canvas>
+		<div class="dom_overlay_container" id="dom_overlay_container_benefit">
 		</div>
 	</div>
-	<div id="animation_container_commercial" style="background-color:rgba(255,255,255,1.0); width:1920px; height:600px; margin: 0 auto;">
-		<canvas id="canvas_commercial" width="1920" height="600" style="position: absolute; display: block; background-color:rgba(255,255,255,1.0);"></canvas>
-		<div id="dom_overlay_container_commercial" style="pointer-events:none; overflow:hidden; width:1920px; height:600px; position: absolute; left: 0px; top: 0px; display: block;">
+	<div class="animation_container" id="animation_container_commercial">
+		<canvas id="canvas_commercial" width="1920" height="600"></canvas>
+		<div class="dom_overlay_container" id="dom_overlay_container_commercial">
 		</div>
 	</div>
-	<div id="animation_container_flood" style="background-color:rgba(255,255,255,1.0); width:1920px; height:600px; margin: 0 auto;">
-		<canvas id="canvas_flood" width="1920" height="600" style="position: absolute; display: block; background-color:rgba(255,255,255,1.0);"></canvas>
-		<div id="dom_overlay_container_flood" style="pointer-events:none; overflow:hidden; width:1920px; height:600px; position: absolute; left: 0px; top: 0px; display: block;">
+	<div class="animation_container" id="animation_container_flood">
+		<canvas id="canvas_flood" width="1920" height="600"></canvas>
+		<div class="dom_overlay_container" id="dom_overlay_container_flood">
 		</div>
 	</div>
-	<div id="animation_container_house" style="background-color:rgba(255,255,255,1.0); width:1920px; height:600px; margin: 0 auto;">
-		<canvas id="canvas_house" width="1920" height="600" style="position: absolute; display: block; background-color:rgba(255,255,255,1.0);"></canvas>
-		<div id="dom_overlay_container_house" style="pointer-events:none; overflow:hidden; width:1920px; height:600px; position: absolute; left: 0px; top: 0px; display: block;">
+	<div class="animation_container" id="animation_container_house">
+		<canvas id="canvas_house" width="1920" height="600"></canvas>
+		<div class="dom_overlay_container" id="dom_overlay_container_house">
 		</div>
 	</div>
-	<div id="animation_container_jobs" style="background-color:rgba(255,255,255,1.0); width:1920px; height:600px; margin: 0 auto;">
-		<canvas id="canvas_jobs" width="1920" height="600" style="position: absolute; display: block; background-color:rgba(255,255,255,1.0);"></canvas>
-		<div id="dom_overlay_container_jobs" style="pointer-events:none; overflow:hidden; width:1920px; height:600px; position: absolute; left: 0px; top: 0px; display: block;">
+	<div class="animation_container" id="animation_container_jobs">
+		<canvas id="canvas_jobs" width="1920" height="600"></canvas>
+		<div class="dom_overlay_container" id="dom_overlay_container_jobs">
 		</div>
 	</div>
-	<div id="animation_container_money" style="background-color:rgba(255,255,255,1.0); width:1920px; height:600px; margin: 0 auto;">
-		<canvas id="canvas_money" width="1920" height="600" style="position: absolute; display: block; background-color:rgba(255,255,255,1.0);"></canvas>
-		<div id="dom_overlay_container_money" style="pointer-events:none; overflow:hidden; width:1920px; height:600px; position: absolute; left: 0px; top: 0px; display: block;">
+	<div class="animation_container" id="animation_container_money">
+		<canvas id="canvas_money" width="1920" height="600"></canvas>
+		<div class="dom_overlay_container" id="dom_overlay_container_money">
 		</div>
 	</div>
 </body>
