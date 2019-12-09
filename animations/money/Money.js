@@ -1515,15 +1515,15 @@ an.makeResponsive = function(isResp, respDim, isScale, scaleType, domContainers)
 			container.style.width = w * sRatio + 'px';				
 			container.style.height = h * sRatio + 'px';			
 		});			
-		stage.scaleX = pRatio*sRatio;			
-		stage.scaleY = pRatio*sRatio;			
+		stage_money.scaleX = pRatio*sRatio;
+		stage_money.scaleY = pRatio*sRatio;
 		lastW = iw; lastH = ih; lastS = sRatio;            
-		stage.tickOnUpdate = false;            
-		stage.update();            
-		stage.tickOnUpdate = true;		
+		stage_money.tickOnUpdate = false;
+		stage_money.update();
+		stage_money.tickOnUpdate = true;
 	}
 }
 
 
-})(createjs = createjs||{}, AdobeAn = AdobeAn||{});
-var createjs, AdobeAn;
+})(createjs = createjs||{}, AdobeAn_money = AdobeAn_money||{});
+var createjs, AdobeAn_money;

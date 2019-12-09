@@ -260,6 +260,50 @@ function handleComplete_jobs(evt_jobs,comp_jobs) {
     AdobeAn_jobs.compositionLoaded(lib_jobs.properties.id);
 }
 
+var canvas_money, stage_money, exportRoot_money, anim_container_money, dom_overlay_container_money, fnStartAnimation_money;
+function init_money() {
+    canvas_money = document.getElementById("canvas_money");
+    anim_container_money = document.getElementById("animation_container_money");
+    dom_overlay_container_money = document.getElementById("dom_overlay_container_money");
+    var comp_money=AdobeAn_money.getComposition("9C467AB24BF8423195F44663826E4B49");
+    var lib_money=comp_money.getLibrary();
+    var loader = new createjs.LoadQueue(false);
+    loader.addEventListener("fileload", function(evt_money){handleFileLoad_money(evt_money,comp_money)});
+    loader.addEventListener("complete", function(evt_money){handleComplete_money(evt_money,comp_money)});
+    var lib_money=comp_money.getLibrary();
+    loader.loadManifest(lib_money.properties.manifest);
+    console.log('here')
+    console.log(lib_money);
+}
+function handleFileLoad_money(evt_money, comp_money) {
+    var images=comp_money.getImages();
+    if (evt_money && (evt_money.item.type == "image")) { images[evt_money.item.id] = evt_money.result; }
+}
+function handleComplete_money(evt_money,comp_money) {
+    //This function is always called, irrespective of the content. You can use the variable "stage_money" after it is created in token create_stage_money.
+    console.log('get comp_money library');
+    console.log(comp_money.getLibrary());
+    var lib_money=comp_money.getLibrary();
+    var ss=comp_money.getSpriteSheet();
+    var queue = evt_money.target;
+    var ssMetadata = lib_money.ssMetadata;
+    for(i=0; i<ssMetadata.length; i++) {
+        ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+    }
+    console.log(lib_money);
+    exportRoot_money = new lib_money.Money();
+    stage_money = new lib_money.Stage(canvas_money);
+    //Registers the "tick" event listener.
+    stage_money.addChild(exportRoot_money);
+    fnStartAnimation_money = function() {
+        createjs.Ticker.framerate = lib_money.properties.fps;
+        createjs.Ticker.addEventListener("tick", stage_money);
+    }
+    //Code to support hidpi screens and responsive scaling.
+    AdobeAn_money.makeResponsive(true,'both',true,1,[canvas_money,anim_container_money,dom_overlay_container_money]);
+    AdobeAn_money.compositionLoaded(lib_money.properties.id);
+}
+
 $(document).ready(function () {
     init_benefit();
     init_car();
@@ -267,4 +311,5 @@ $(document).ready(function () {
     init_flood();
     init_house();
     init_jobs();
+    init_money();
 })
